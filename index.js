@@ -1,10 +1,14 @@
 require("dotenv").config();
 
 var express = require('express'),
-    app = express();
+    app = express(),
+    port = process.env.PORT || 8000,
+    bodyParser = require("body-parser");
 
 var todoRoutes = require('./routes/todos')
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.use("/api/todos",todoRoutes);
 
